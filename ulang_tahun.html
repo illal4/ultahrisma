@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kartu Ulang Tahun Multi Page</title>
+
+  <!-- Google Font: QUICKSAND -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(135deg, #69e1bd, #408872);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      background: rgb(255, 255, 255);
+      width: 90%;
+      max-width: 700px;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: fadeIn 0.8s ease;
+    }
+
+    h1 {
+      font-size: 30px;
+      font-weight: 700;
+      color: #000000;
+      margin-bottom: 25px;
+      min-height: 90px;
+    }
+
+    img {
+      width: 60%;
+      max-width: 350px;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      margin-bottom: 25px;
+    }
+
+    .nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 12px 22px;
+      border: none;
+      border-radius: 12px;
+      background: rgb(25, 179, 89);
+      color: rgb(219, 255, 234);
+      font-size: 16px;
+      cursor: pointer;
+      font-family: 'Quicksand', sans-serif;
+      transition: 0.3s;
+      font-weight: 600;
+    }
+
+    button:hover {
+      background: rgb(49, 74, 59);
+    }
+
+    button:disabled {
+      background: #69e1bd;
+      cursor: not-allowed;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="card">
+    <h1 id="text"></h1>
+    <img id="image" src="" alt="">
+    
+    <div class="nav-buttons">
+      <button id="prev">Sebelumnya</button>
+      <button id="next">Selanjutnya</button>
+    </div>
+  </div>
+
+  <script>
+    // ===========================
+    // HALAMAN-KALIMAT + FOTO
+    // ===========================
+    const pages = [
+        { text: "Sayang, selamat ulang tahun.", img: "img20.jpg" },
+        { text: "Aku bersyukur kamu lahir.", img: "img1.jpg" },
+        { text: "Aku bersyukur kamu tumbuh jadi pribadi sespesial buat aku.", img: "img2.jpg" },
+        { text: "Dan aku lebih bersyukur lagi karena kamu sekarang jadi milikku.", img: "img3.jpg" },
+        { text: "Iya, MILIKKU.", img: "img4.jpg" },
+
+        { text: "Setiap hari sama kamu itu hadiah.", img: "img5.jpg" },
+        { text: "Kadang hadiah lucu.", img: "img6.jpg" },
+        { text: "Kadang hadiah yang suka ngambek bikin masalah.", img: "img7.jpg" },
+        { text: "Kadang hadiah yang kalau kenyang ngantuk trus tidur.", img: "img8.jpg" },
+        { text: "Dasar KEBO!!", img: "img12.jpg" },
+        { text: "Tapi tetap, kamu adalah hadiah paling berharga buatku.", img: "img9.jpg" },
+
+        { text: "Aku suka caramu tersenyum.", img: "img10.jpg" },
+        { text: "Senyum yang bisa bikin aku lupa kalau dunia itu jahat.", img: "img5.jpg" },
+        { text: "Dan bisa bikin aku ingat kalau kamu jauh lebih penting dari segalanya.", img: "img11.jpg" },
+
+        { text: "Aku pengin kamu tahu satu hal.", img: "img13.jpg" },
+        { text: "Aku tuh sayang banget sama kamu.", img: "img14.jpg" },
+        { text: "Hari ini, aku cuma mau kamu bahagia.", img: "img15.jpg" },
+        { text: "Maaf mungkin hari ini aku juga membuatmu sedih.", img: "img16.jpg" },
+
+        { text: "Aku doain semoga hidupmu selalu lancar sayangg.", img: "img17.jpg" },
+        { text: "Semoga rezekimu luas.", img: "img18.jpg" },
+        { text: "Semoga setiap langkahmu dipermudah ke depannya.", img: "img17.jpg" },
+        { text: "Dan semoga setiap masalah hidupmu ketemu jalannya.", img: "img10.jpg" },
+        { text: "Kalau jalannya buntu, bilang sama aku ya sayanggkuuu.", img: "img9.jpg" },
+
+        { text: "Terima kasih sudah hadir di hidupku.", img: "img19.jpg" },
+        { text: "Terima kasih sudah bertahan dan nggak kabur.", img: "img5.jpg" },
+        { text: "Terima kasih sudah sabar sama tingkahku yang kadang absurd.", img: "img17.jpg" },
+        { text: "Terima kasih sudah bikin hariku lebih berwarna.", img: "img9.jpg" },
+
+        { text: "Sekali lagi, Selamat ulang tahun, cintaku.", img: "img9.jpg" },
+        { text: "Aku bangga punya kamu.", img: "img11.jpg" },
+        { text: "Aku bersyukur punya kamu.", img: "img11.jpg" },
+        { text: "Aku sayang banget sama kamu.", img: "img5.jpg" },
+
+        { text: "Dan aku berharap kamu panjang umur.", img: "img14.jpg" },
+        { text: "Biar bisa terus nerima cintaku yang tidak ada habisnya ahayyy!", img: "img1.jpg" },
+
+        { text: "Aku cinta kamu.", img: "img11.jpg" },
+        { text: "Hari ini.", img: "img11.jpg" },
+        { text: "Besok.", img: "img11.jpg" },
+        { text: "Dan setiap hari setelahnya.", img: "img11.jpg" },
+        { text: "Bahkan di hari ketika kamu ngeselin sekalipun.", img: "img12.jpg" },
+
+        { text: "Pokoknya kamu jangan kemana-mana ya.", img: "img11.jpg" }
+
+    ];
+
+    // ===========================
+    // LOGIC HALAMAN
+    // ===========================
+    let currentPage = 0;
+
+    const textEl = document.getElementById("text");
+    const imgEl = document.getElementById("image");
+    const nextBtn = document.getElementById("next");
+    const prevBtn = document.getElementById("prev");
+
+    function loadPage() {
+      textEl.textContent = pages[currentPage].text;
+      imgEl.src = pages[currentPage].img;
+      imgEl.alt = "Foto " + (currentPage + 1);
+
+      prevBtn.disabled = currentPage === 0;
+      nextBtn.disabled = currentPage === pages.length - 1;
+    }
+
+    nextBtn.addEventListener("click", () => {
+      if (currentPage < pages.length - 1) {
+        currentPage++;
+        loadPage();
+      }
+    });
+
+    prevBtn.addEventListener("click", () => {
+      if (currentPage > 0) {
+        currentPage--;
+        loadPage();
+      }
+    });
+
+    loadPage(); // load halaman pertama
+  </script>
+
+</body>
+</html>
